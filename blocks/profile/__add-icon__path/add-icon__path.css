@@ -1,7 +1,0 @@
-.add-icon__path{
-    fill: #fff;
-    transition: fill .5s ease-in-out;
-}
-.profile__add:hover .add-icon__path{
-    fill: rgba(255, 255, 255, 0.6);
-}

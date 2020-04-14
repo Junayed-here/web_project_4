@@ -1,0 +1,9 @@
+.cards__favourite{
+    float: right;
+    margin-top: 6px;
+    width: 20px;
+    height: 18px;
+    background-image: url("../../../images/favourite.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

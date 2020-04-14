@@ -1,9 +1,0 @@
-.profile__text{
-    display: inline-block;
-    vertical-align: top;
-}
-@media screen and (max-width: 320px){
-    .profile__text{
-        text-align: center;
-    }
-}

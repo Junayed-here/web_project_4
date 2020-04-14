@@ -1,9 +1,9 @@
-@import url("./__cards__item/cards__item.css");
-@import url("./__cards__list/cards__list.css");
-@import url("./__cards__info/cards__info.css");
-@import url("./__cards__favourite/cards__favourite.css");
-@import url("./__card__image/card__image.css");
-@import url("./__cards__title/cards__title.css");
+@import url("./__item/cards__item.css");
+@import url("./__list/cards__list.css");
+@import url("./__info/cards__info.css");
+@import url("./__favourite/cards__favourite.css");
+@import url("./__image/cards__image.css");
+@import url("./__title/cards__title.css");
 .cards{
     max-width: 882px;
     width: 100%;
@@ -12,9 +12,15 @@
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 768px){
+    .cards{
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+}
+
 @media screen and (max-width: 320px){
     .cards{
         margin-top: 36px;
-        padding: 0 20px;
     }
 }

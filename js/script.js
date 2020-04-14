@@ -1,21 +1,21 @@
 const profile = document.querySelector(".profile");
-const profileEdit = profile.querySelector(".profile__edit");
-const popupsBox = document.querySelector(".popups");
+const profileEdit = profile.querySelector(".profile__button_edit");
+const popupBox = document.querySelector(".popup");
 const popupsClose = document.querySelector(".popup__close");
 const profileName = document.querySelector(".profile__name");
 const profileDesignation = document.querySelector(".profile__designation");
-const formElement = document.querySelector(".edit-form");
+const formElement = document.querySelector(".popup__edit-form");
 const nameInput = formElement.querySelector("#input-name");
 const designationInput = formElement.querySelector("#input-about");
 
 function openPopup() {
-    popupsBox.classList.add("popups_show");
+    popupBox.classList.add("popup_show");
     nameInput.value = profileName.textContent;
     designationInput.value = profileDesignation.textContent;
 }
 
 function closePopup() {
-    popupsBox.classList.remove("popups_show");
+    popupBox.classList.remove("popup_show");
 }
 
 function formSubmitHandler (evt) {
