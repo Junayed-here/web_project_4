@@ -1,12 +1,15 @@
-.profile__add_button{
+.button_role_add{
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
     width: 150px;
+    min-height: 50px;
     background-image: url("../../../images/add.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 
 @media screen and (max-width: 768px){
-    .profile__add_button{
+    .button_role_add{
         width: 100%;
         margin-top: 20px;
     }

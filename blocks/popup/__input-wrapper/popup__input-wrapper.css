@@ -1,0 +1,7 @@
+.popup__input-wrapper{
+    margin-top: 38px;
+}
+
+.popup__input-wrapper:first-child{
+    margin-top: 0 !important;
+}

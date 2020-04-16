@@ -1,5 +1,6 @@
-.popup__submit_button{
+.button_role_submit{
     width: 100%;
+    min-height: 50px;
     background-color: #000000;
     border: none;
     border-radius: 2px;
@@ -9,6 +10,6 @@
     cursor: pointer;
     transition: background .5s ease-in-out;
 }
-.popup__submit_button:hover{
+.button_role_submit:hover{
     background: rgba(0, 0, 0, 0.8);
 }

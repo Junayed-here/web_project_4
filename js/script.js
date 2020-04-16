@@ -1,5 +1,5 @@
 const profile = document.querySelector(".profile");
-const profileEdit = profile.querySelector(".profile__button_edit");
+const profileEdit = profile.querySelector(".button_role_edit");
 const popupBox = document.querySelector(".popup");
 const popupsClose = document.querySelector(".popup__close");
 const profileName = document.querySelector(".profile__name");

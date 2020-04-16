@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="blocks/pages/index.css">
 </head>
 <body>
-	<div class="page_wrapper">
+	<div class="page">
 		<header class="header">
 			<img src="images/logo_white.png" alt="Logo" class="header__logo">
 		</header>
@@ -17,10 +17,10 @@
 				<img src="images/image.jpg" alt="Avatar" class="profile__picture">
 				<div class="profile__text">
 					<h1 class="profile__name" id="profile__name">Jacques Cousteau</h1>
-					<button class="profile__button_edit"></button>
+					<button class="button button_role_edit"></button>
 					<p class="profile__designation" id="profile__designation">Explorer</p>
 				</div>
-				<button class="button profile__add_button"></button>
+				<button class="button button_role_add"></button>
 			</section>
 			
 			<section class="cards">
@@ -79,13 +79,13 @@
 				<div class="popup__close"></div>
 				<h3 class="popup__title">Edit profile</h3>
 				<form action="#" class="popup__edit-form">
-					<div class="popup__input_wrapper">
-						<input type="text" placeholder="Name" class="popup__input_field" id="input-name">
+					<div class="popup__input-wrapper">
+						<input type="text" placeholder="Name" class="popup__input" id="input-name">
 					</div>
-					<div class="popup__input_wrapper">
-						<input type="text" placeholder="About me" class="popup__input_field" id="input-about">
+					<div class="popup__input-wrapper">
+						<input type="text" placeholder="About me" class="popup__input" id="input-about">
 					</div>
-					<button class="button popup__submit_button">Save</button>
+					<button class="button button_role_submit">Save</button>
 				</form>
 			</div>
 		</div>

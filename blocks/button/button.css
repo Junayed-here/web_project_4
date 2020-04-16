@@ -1,9 +1,9 @@
+@import url("./__button_role_edit/button_role_edit.css");
+@import url("./__button_role_add/button_role_add.css");
+@import url("./__button_role_submit/button_role_submit.css");
 .button{
-    background-color: transparent;
-    border: 2px solid #FFFFFF;
     transition: all .5s ease-in-out;
     cursor: pointer;
-    min-height: 50px;
 }
 .button:hover{
     opacity: .6;
