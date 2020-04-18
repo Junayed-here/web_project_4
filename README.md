@@ -1,16 +1,24 @@
 # Project 4: Around The U.S.
 
-### Overview
-
+* Description
 * Figma
-* Images
+* Technologies
+
+
+**Description**
+
+"Around The U.S." — an interactive page where users can add, remove, or like photos. Also user name and designation is changeable.
 
 **Figma**
 
 * [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
 
-**Images**
+**Technologies used**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+* HTML
+* CSS
+* CSS Animations
+* Javascript
 
-Have fun with JavaScript!
+
+Brought to you by [_Practicum yandex_](https://practicum.yandex.com "Practicum Yandex!")

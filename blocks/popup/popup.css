@@ -1,8 +1,6 @@
 @import url("./__input/popup__input.css");
-@import url("./__input-wrapper/popup__input-wrapper.css");
 @import url("./__body/popup__body.css");
 @import url("./__title/popup__title.css");
-@import url("./__close/popup__close.css");
 .popup{
     position: fixed;
     width: 100%;

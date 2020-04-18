@@ -8,8 +8,12 @@
     width: 100%;
     border: none;
     border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-top: 38px;
 }
 
+.popup__input:first-child{
+    margin-top: 0;
+}
 .popup__input:focus{
     outline: none;
 }

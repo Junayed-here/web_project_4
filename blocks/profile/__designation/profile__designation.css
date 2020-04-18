@@ -1,5 +1,4 @@
 .profile__designation{
-    font-family: "Inter" , sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -12,6 +11,7 @@
     .profile__designation{
         font-size: 16px;
         line-height: 20px;
+        text-align: center;
     }
 }
 @media screen and (max-width: 320px){

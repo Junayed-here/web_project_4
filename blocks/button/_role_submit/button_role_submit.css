@@ -8,8 +8,4 @@
     color: #FFFFFF;
     margin-top: 48px;
     cursor: pointer;
-    transition: background .5s ease-in-out;
-}
-.button_role_submit:hover{
-    background: rgba(0, 0, 0, 0.8);
 }

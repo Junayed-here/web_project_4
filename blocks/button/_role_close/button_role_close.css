@@ -1,0 +1,20 @@
+.button_role_close{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: -50px;
+    right: -47px;
+    background-image: url("../../../images/close.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+}
+@media screen and (max-width: 550px){
+    .button_role_close{
+        width: 35px;
+        height: 35px;
+        top: -45px;
+        right: 0;
+    }
+}

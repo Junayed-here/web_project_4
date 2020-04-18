@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Around The U.S.</title>
-	<link rel="stylesheet" href="blocks/pages/index.css">
+	<link rel="stylesheet" href="pages/index.css">
 </head>
 <body>
 	<div class="page">
@@ -76,15 +76,11 @@
 		
 		<div class="popup">
 			<div class="popup__body">
-				<div class="popup__close"></div>
+				<button class="button button_role_close"></button>
 				<h3 class="popup__title">Edit profile</h3>
 				<form action="#" class="popup__edit-form">
-					<div class="popup__input-wrapper">
-						<input type="text" placeholder="Name" class="popup__input" id="input-name">
-					</div>
-					<div class="popup__input-wrapper">
-						<input type="text" placeholder="About me" class="popup__input" id="input-about">
-					</div>
+					<input type="text" placeholder="Name" class="popup__input" id="input-name">
+					<input type="text" placeholder="About me" class="popup__input" id="input-about">
 					<button class="button button_role_submit">Save</button>
 				</form>
 			</div>
