@@ -20,5 +20,4 @@
 * CSS Animations
 * Javascript
 
-
-Brought to you by [_Practicum yandex_](https://practicum.yandex.com "Practicum Yandex!")
+Available in this link [_Project 4_](https://junayed-here.github.io/web_project_4/ "'Project 4' By Junayed")
