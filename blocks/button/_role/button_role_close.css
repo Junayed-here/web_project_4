@@ -10,6 +10,11 @@
     background-color: transparent;
     border: none;
 }
+
+.button_role_close:hover{
+    opacity: .6;
+}
+
 @media screen and (max-width: 550px){
     .button_role_close{
         width: 35px;

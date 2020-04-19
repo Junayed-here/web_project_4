@@ -1,11 +1,8 @@
-@import url("_role_edit/button_role_edit.css");
-@import url("_role_add/button_role_add.css");
-@import url("_role_submit/button_role_submit.css");
-@import url("_role_close/button_role_close.css");
+@import url("./_role/button_role_edit.css");
+@import url("./_role/button_role_add.css");
+@import url("./_role/button_role_submit.css");
+@import url("./_role/button_role_close.css");
 .button{
     transition: all .5s ease-in-out;
     cursor: pointer;
-}
-.button:hover{
-    opacity: .6;
 }

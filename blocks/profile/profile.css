@@ -1,6 +1,7 @@
 @import url("./__picture/profile__picture.css");
 @import url("./__name/profile__name.css");
 @import url("./__designation/profile__designation.css");
+@import url("./__text/profile__text.css");
 .profile{
     max-width: 882px;
     width: 100%;
@@ -23,10 +24,11 @@
     }
 }
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 425px){
     .profile{
         grid-template-columns: 100%;
         padding: 0 20px;
         margin-top: 42px;
+        grid-row-gap: 0;
     }
 }
