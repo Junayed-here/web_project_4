@@ -16,9 +16,6 @@
 @media screen and (max-width: 425px){
     .button_role_edit{
         margin-left: 14px;
-        position: absolute;
-        top: 30px;
-        right: -45px;
         border: 1px solid #FFFFFF;
         width: 18px;
         height: 18px;
