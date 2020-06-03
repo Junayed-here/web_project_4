@@ -24,50 +24,7 @@
 			</section>
 			
 			<section class="cards">
-				<ul class="cards__list">
-					<li class="cards__item">
-						<img src="images/cards/yosemite.png" alt="yosemite" class="cards__image">
-						<div class="cards__info">
-							<h2 class="cards__title">Yosemite Valley</h2>
-							<div class="cards__favourite"></div>
-						</div>
-					</li>
-					<li class="cards__item">
-						<img src="images/cards/lake.png" alt="lake" class="cards__image">
-						<div class="cards__info">
-							<h2 class="cards__title">Lake Louise</h2>
-							<div class="cards__favourite"></div>
-						</div>
-					</li>
-					<li class="cards__item">
-						<img src="images/cards/bald.png" alt="bald" class="cards__image">
-						<div class="cards__info">
-							<h2 class="cards__title">Bald Mountains</h2>
-							<div class="cards__favourite"></div>
-						</div>
-					</li>
-					<li class="cards__item">
-						<img src="images/cards/latemar.png" alt="latemar" class="cards__image">
-						<div class="cards__info">
-							<h2 class="cards__title">Latemar</h2>
-							<div class="cards__favourite"></div>
-						</div>
-					</li>
-					<li class="cards__item">
-						<img src="images/cards/vanois.png" alt="vanois" class="cards__image">
-						<div class="cards__info">
-							<h2 class="cards__title">Vanois National...</h2>
-							<div class="cards__favourite"></div>
-						</div>
-					</li>
-					<li class="cards__item">
-						<img src="images/cards/lago.png" alt="lago" class="cards__image">
-						<div class="cards__info">
-							<h2 class="cards__title">Lago di Braies</h2>
-							<div class="cards__favourite"></div>
-						</div>
-					</li>
-				</ul>
+				<ul class="cards__list"></ul>
 			</section>
 		</main>
 		<footer class="footer">
@@ -75,7 +32,7 @@
 		</footer>
 		
 		<div class="popup">
-			<div class="popup__body">
+			<div class="popup__body profileEdit">
 				<button class="button button_role_close"></button>
 				<h3 class="popup__title">Edit profile</h3>
 				<form action="#" class="popup__edit-form">
@@ -84,7 +41,32 @@
 					<button class="button button_role_submit">Save</button>
 				</form>
 			</div>
+			<div class="popup__body addCard">
+				<button class="button button_role_close"></button>
+				<h3 class="popup__title">New Place</h3>
+				<form action="#" class="add_card-form">
+					<input type="text" placeholder="Title" class="popup__input" id="input-card-name">
+					<input type="text" placeholder="Image URL" class="popup__input" id="input-img-link">
+					<button class="button button_role_submit">Save</button>
+				</form>
+			</div>
+			<div class="popup__body openPicture-popup">
+				<button class="button button_role_close"></button>
+				<img class="openPicture-popup__img" src="https://source.unsplash.com/random/1920x1080" alt="">
+				<p class="openPicture-popup__text">Text</p>
+			</div>
 		</div>
+		
+		<template id="card_template">
+			<li class="cards__item">
+				<img src="images/cards/yosemite.png" alt="Image" class="cards__image">
+				<div class="cards__info">
+					<h2 class="cards__title"></h2>
+					<div class="cards__favourite"></div>
+				</div>
+				<div class="cards__delete"></div>
+			</li>
+		</template>
 	</div>
 	<script src="js/script.js"></script>
 </body>
