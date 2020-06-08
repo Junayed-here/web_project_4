@@ -3,6 +3,7 @@ const profileEdit = profile.querySelector(".button_role_edit");
 const addCard = profile.querySelector(".button_role_add");
 const cardList = document.querySelector(".cards__list");
 const popupBox = document.querySelector(".popup");
+const popupBoxActiveClass = document.querySelector(".popup_show");
 const popupBody = document.querySelectorAll(".popup__body");
 const openPictureImg = document.querySelector(".openPicture-popup__img");
 const openPictureText = document.querySelector(".openPicture-popup__text");
@@ -42,19 +43,17 @@ const initialCards = [
     }
 ];
 
-// Function for closing popup when clicking outside of popup content
-popupBox.addEventListener("click", function (evt) {
-    if(evt.target.classList.contains("popup_show")){
-        closePopup();
-    };
-});
 
-// Function for closing popup using "Esc" key
-document.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape" || event.keyCode === 27 && document.querySelector(".popup_show").length > 0) {
-        closePopup();
-    };
-});
+// Open Image popup
+const openImagePopup = (item) => {
+    const title =  item.querySelector(".cards__title").textContent;
+    const url =  item.querySelector(".cards__image").getAttribute('src');
+    openPictureText.textContent = title;
+    openPictureImg.setAttribute('src',url);
+    popupBox.classList.add("popup_show");
+    item.classList.remove("popup__body_show");
+    document.querySelector(".openPicture-popup").classList.add("popup__body_show");
+};
 
 // Add card function
 const addCardFun = (cardTitle, cardImage) => {
@@ -78,7 +77,7 @@ const addCardFun = (cardTitle, cardImage) => {
 
     // adding like function
     cardElement.querySelector(".cards__item").addEventListener("click", (event) => {
-        if (event.target.classList != 'cards__delete'){
+        if (!event.target.classList.contains('cards__delete')){
             openImagePopup(event.target.closest('.cards__item'));
         }
     });
@@ -87,7 +86,7 @@ const addCardFun = (cardTitle, cardImage) => {
 };
 
 // Initial Cards load to the page
-for (let { name, link } of initialCards) {
+for (const { name, link } of initialCards) {
     addCardFun(name, link);
 }
 
@@ -100,17 +99,6 @@ const openAddCardPopup = () => {
         item.classList.remove("popup__body_show");
     });
     document.querySelector(".addCard").classList.add("popup__body_show");
-};
-
-// Open Image popup
-const openImagePopup = (item) => {
-    const title =  item.querySelector(".cards__title").textContent;
-    const url =  item.querySelector(".cards__image").getAttribute('src');
-    openPictureText.textContent = title;
-    openPictureImg.setAttribute('src',url);
-    popupBox.classList.add("popup_show");
-    item.classList.remove("popup__body_show");
-    document.querySelector(".openPicture-popup").classList.add("popup__body_show");
 };
 
 // Open edit profile popup
@@ -133,9 +121,38 @@ const openProfileEditPopup = () =>  {
 const closePopup = () => {
     popupBox.classList.remove("popup_show");
     document.querySelector('.popup__body_show').classList.remove('popup__body_show');
-    document.querySelectorAll('.button_role_submit').forEach(function (item) {
+    document.querySelectorAll('.button_role_submit').forEach( (item) => {
         item.classList.add("button_role_inactive");
     });
+};
+
+// Function for closing popup when clicking outside of popup content
+popupBox.addEventListener("click", (evt) => {
+    if(evt.target.classList.contains("popup_show")){
+        closePopup();
+    }
+});
+
+// Function for closing popup using "Esc" key
+document.addEventListener("keydown",  (evt) => {
+    if (evt.key === "Escape" || event.keyCode === 27 && popupBoxActiveClass.length > 0) {
+        closePopup();
+    }
+});
+
+// Add card form submission
+const formSubmitHandlerAddCard = () => {
+    const title = titleInput.value;
+    const image = imageURLInput.value;
+    addCardFun(title, image);
+    closePopup();
+};
+
+// edit profile form submission
+const formSubmitHandlerProfileEdit = () => {
+    profileName.textContent = nameInput.value;
+    profileDesignation.textContent = designationInput.value;
+    closePopup();
 };
 
 // Open add card box
@@ -149,12 +166,8 @@ popupsClose.forEach((btn) => {
     btn.addEventListener("click",closePopup);
 });
 
-// Initial call for for all form to active validation feature
-enableValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inactiveButtonClass: "button_role_inactive",
-    inputErrorClass: "popup__input-invalid",
-    errorClass: "popup__input-error_active"
-});
+// Add card form
+formElementAddCard.addEventListener('submit', formSubmitHandlerAddCard);
+
+// Edit profile form
+formElementEdit.addEventListener('submit', formSubmitHandlerProfileEdit);
