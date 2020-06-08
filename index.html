@@ -35,19 +35,23 @@
 			<div class="popup__body profileEdit">
 				<button class="button button_role_close"></button>
 				<h3 class="popup__title">Edit profile</h3>
-				<form action="#" class="popup__edit-form">
-					<input type="text" placeholder="Name" class="popup__input" id="input-name">
-					<input type="text" placeholder="About me" class="popup__input" id="input-about">
-					<button class="button button_role_submit">Save</button>
+				<form action="#" class="popup__form popup__edit-form" name="popup__edit" novalidate>
+					<input type="text" placeholder="Name" class="popup__input" id="input-name" minlength="2" maxlength="40" required>
+					<span class="popup__input-error" id="input-name-error"></span>
+					<input type="text" placeholder="About me" class="popup__input" id="input-about" minlength="2" maxlength="200" required>
+					<span class="popup__input-error" id="input-about-error"></span>
+					<button class="button button_role_submit popup__button" type="submit">Save</button>
 				</form>
 			</div>
 			<div class="popup__body addCard">
 				<button class="button button_role_close"></button>
 				<h3 class="popup__title">New Place</h3>
-				<form action="#" class="add_card-form">
-					<input type="text" placeholder="Title" class="popup__input" id="input-card-name">
-					<input type="text" placeholder="Image URL" class="popup__input" id="input-img-link">
-					<button class="button button_role_submit">Save</button>
+				<form action="#" class="popup__form add_card-form" name="add_card" novalidate>
+					<input type="text" placeholder="Title" class="popup__input" id="input-card-name" minlength="1" maxlength="30" required>
+					<span class="popup__input-error" id="input-card-name-error"></span>
+					<input type="url" placeholder="Image URL" class="popup__input" id="input-img-link" required>
+					<span class="popup__input-error" id="input-img-link-error"></span>
+					<button class="button button_role_submit popup__button" type="submit">Save</button>
 				</form>
 			</div>
 			<div class="popup__body openPicture-popup">
@@ -68,6 +72,7 @@
 			</li>
 		</template>
 	</div>
+	<script src="js/validate.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
