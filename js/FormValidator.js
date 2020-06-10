@@ -11,14 +11,14 @@ export class FormValidator {
 
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    };
+    }
 
     // check any invalid field available or not
     _hasInvalidInput(){
         return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid;
         });
-    };
+    }
 
     // toggle button state
     _toggleButtonState(){
@@ -29,7 +29,7 @@ export class FormValidator {
             this._buttonElement.removeAttribute("disabled");
             this._buttonElement.classList.remove(this._inactiveButtonClass);
         }
-    };
+    }
 
     // show error message
     _showInputError(inputElement, errorMessage){
@@ -37,7 +37,7 @@ export class FormValidator {
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = errorMessage;
         errorElement.classList.add(this._errorClass);
-    };
+    }
 
     // hide error message
     _hideInputError(inputElement){
@@ -45,7 +45,7 @@ export class FormValidator {
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.classList.remove(this._errorClass);
         errorElement.textContent = "";
-    };
+    }
 
     // check validity and show/hide error message
     _checkInputValidity(inputElement){
@@ -54,7 +54,7 @@ export class FormValidator {
         } else {
             this._hideInputError(inputElement);
         }
-    };
+    }
 
     // set event listeners for form and input
     _setEventListeners() {
@@ -68,12 +68,12 @@ export class FormValidator {
                 this._checkInputValidity(inputElement);
             });
         });
-    };
+    }
 
     // initialize validation
     enableValidation(){
         this._toggleButtonState();
         this._setEventListeners();
-    };
+    }
 
-};
+}

@@ -1,3 +1,5 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 const profile = document.querySelector(".profile");
 const profileEdit = profile.querySelector(".button_role_edit");
 const addCard = profile.querySelector(".button_role_add");
@@ -44,7 +46,6 @@ const initialCards = [
 
 
 // Initial Cards load to the page
-import {Card} from './Card.js';
 for (const { name, link } of initialCards) {
     const card = new Card(name, link);
     const cardElement = card.generateCard();
@@ -52,7 +53,6 @@ for (const { name, link } of initialCards) {
 }
 
 // Activate form validation
-import {FormValidator} from './FormValidator.js';
 formList.forEach((formElement) => {
     const validate = new FormValidator({
         formSelector: ".popup__form",
@@ -106,7 +106,7 @@ popupBox.addEventListener("click", (evt) => {
 
 // Function for closing popup using "Esc" key
 document.addEventListener("keydown",  (evt) => {
-    if (evt.key === "Escape" || event.keyCode === 27 && popupBoxActiveClass.length > 0) {
+    if (evt.key === "Escape" || evt.keyCode === 27 && popupBoxActiveClass.length > 0) {
         closePopup();
     }
 });
