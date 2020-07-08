@@ -1,9 +1,9 @@
 @import url("__input/popup__input.css");
-@import url("./__input-error/popup__input-error.css");
-@import url('./__input-invalid/popup__input-invalid.css');
-@import url("./__body/popup__body.css");
-@import url("./__title/popup__title.css");
-@import url("./__openPicture-popup/openPicture-popup.css");
+@import url("__input-error/popup__input-error.css");
+@import url('__input-invalid/popup__input-invalid.css');
+@import url("__body/popup__body.css");
+@import url("__title/popup__title.css");
+@import url("__openPicture-popup/openPicture-popup.css");
 .popup{
     position: fixed;
     z-index: 1;

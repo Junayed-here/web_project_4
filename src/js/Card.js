@@ -1,8 +1,10 @@
 // Card class
-export class Card {
-    constructor(name, link) {
-        this._name = name;
-        this._link = link;
+
+export default class Card {
+    constructor({item, handleCardClick}) {
+        this._name = item.name;
+        this._link = item.link;
+        this._handleCardClick = handleCardClick;
     }
 
     // card template
@@ -20,12 +22,7 @@ export class Card {
     _setEventListeners(){
         this._element.addEventListener("click", (event) => {
             if (!event.target.classList.contains('cards__delete') && !event.target.classList.contains('cards__favourite')){
-
-                document.querySelector(".openPicture-popup__img").setAttribute('src',this._link);
-                document.querySelector(".openPicture-popup__text").textContent = this._name;
-                document.querySelector(".popup").classList.add("popup_show");
-                this._element.classList.remove("popup__body_show");
-                document.querySelector(".openPicture-popup").classList.add("popup__body_show");
+                this._handleCardClick({text: this._name, link: this._link});
             }
         });
 
@@ -37,6 +34,8 @@ export class Card {
             event.target.closest('.cards__item').remove();
         });
     }
+
+
 
     // generate card
     generateCard() {
