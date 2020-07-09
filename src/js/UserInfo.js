@@ -39,7 +39,4 @@ export default class UserInfo extends Popup{
         super.open();
         this.setEventListeners();
     }
-    close() {
-        super.close();
-    }
 }

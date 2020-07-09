@@ -1,3 +1,5 @@
+// importing css file
+import "../pages/index.css";
 import Card from './Card.js';
 import Section from './Section.js';
 import FormValidator from './FormValidator.js';
@@ -42,7 +44,7 @@ formList.forEach((formElement) => {
 });
 
 
-// Open add card box ******************openAddCardPopup
+// Open add card box
 addCard.addEventListener("click",()=>{
     new PopupWithForm(".addCard", {fromSubmission:(item) => {
             const card = new Card({item, handleCardClick:({text, link}) =>{
@@ -58,11 +60,3 @@ addCard.addEventListener("click",()=>{
 profileEdit.addEventListener("click", ()=>{
     new UserInfo(".profileEdit", {profileName, profileDesignation}).open();
 });
-
-
-
-
-console.log("hi");
-
-// importing css file
-import "../pages/index.css";

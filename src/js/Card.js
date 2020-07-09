@@ -27,11 +27,11 @@ export default class Card {
         });
 
         this._element.querySelector(".cards__favourite").addEventListener("click", (event) => {
-            event.target.classList.toggle("cards__favourite_active");
+            this._element.classList.toggle("cards__favourite_active");
         });
 
         this._element.querySelector(".cards__delete").addEventListener("click", (event) => {
-            event.target.closest('.cards__item').remove();
+            this._element.closest('.cards__item').remove();
         });
     }
 
@@ -43,6 +43,7 @@ export default class Card {
         this._setEventListeners();
 
         this._element.querySelector(".cards__title").textContent = this._name;
+        this._element.querySelector(".cards__image").alt = this._name;
         this._element.querySelector(".cards__image").src = this._link;
 
         return this._element;
