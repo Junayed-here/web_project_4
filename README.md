@@ -20,4 +20,4 @@
 * CSS Animations
 * Javascript
 
-Available in this link [_Project 4_](https://junayed-here.github.io/web_project_4/src "'Project 4' By Junayed")
+Available in this link [_Project 4_](https://junayed-here.github.io/web_project_4/dist "'Project 4' By Junayed")
