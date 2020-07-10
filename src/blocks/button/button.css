@@ -1,9 +1,0 @@
-@import url("./_role/button_role_edit.css");
-@import url("./_role/button_role_add.css");
-@import url("./_role/button_role_submit.css");
-@import url("./_role/button_role_close.css");
-@import url("./_role/button_role_inactive.css");
-.button{
-    transition: all .5s ease-in-out;
-    cursor: pointer;
-}
