@@ -13,6 +13,10 @@ import {
     cardList,
     profileName,
     profileDesignation,
+    titleInput,
+    imageURLInput,
+    nameInput,
+    designationInput,
     formList
 } from "./constants.js";
 
@@ -52,11 +56,14 @@ addCard.addEventListener("click",()=>{
                 }});
             const cardElement = card.generateCard();
             cardList.prepend(cardElement);
-        }}).open();
+        },inputs: {input1: titleInput, input2: imageURLInput}}).open();
 });
 
 
 // Open edit profile box
 profileEdit.addEventListener("click", ()=>{
-    new UserInfo(".profileEdit", {profileName, profileDesignation}).open();
+    new UserInfo({profileName, profileDesignation}).getUserInfo();
+    new PopupWithForm(".profileEdit", {fromSubmission:(item) => {
+            new UserInfo({profileName, profileDesignation}).setUserInfo(item);
+        },inputs: {input1: nameInput, input2: designationInput}}).open();
 });

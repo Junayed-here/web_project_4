@@ -27,7 +27,7 @@ export default class Card {
         });
 
         this._element.querySelector(".cards__favourite").addEventListener("click", (event) => {
-            this._element.classList.toggle("cards__favourite_active");
+            this._element.querySelector(".cards__favourite").classList.toggle("cards__favourite_active");
         });
 
         this._element.querySelector(".cards__delete").addEventListener("click", (event) => {
