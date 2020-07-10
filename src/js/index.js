@@ -20,18 +20,32 @@ import {
     formList
 } from "./constants.js";
 
+const popupWithImage = new PopupWithImage(".openPicture-popup");
 
 const initialCard = new Section({
     items: initialCards,
     renderer: (item) => {
         const card = new Card({item, handleCardClick:({text, link}) =>{
-            new PopupWithImage(".openPicture-popup").open({text, link});
+                popupWithImage.open({text, link});
             }});
         const cardElement = card.generateCard();
         initialCard.setItem(cardElement);
     }
 }, cardList);
 initialCard.renderItems();
+
+const userInfoCheck = new UserInfo({profileName, profileDesignation});
+const addCardPopup = new PopupWithForm(".addCard", {fromSubmission:(item) => {
+        const card = new Card({item, handleCardClick:({text, link}) =>{
+                new PopupWithImage(".openPicture-popup").open({text, link});
+            }});
+        const cardElement = card.generateCard();
+        cardList.prepend(cardElement);
+    },inputs: {input1: titleInput, input2: imageURLInput}});
+
+const profileEditpopup = new PopupWithForm(".profileEdit", {fromSubmission:(item) => {
+        userInfoCheck.setUserInfo(item);
+    },inputs: {input1: nameInput, input2: designationInput}});
 
 
 // Activate form validation
@@ -50,20 +64,11 @@ formList.forEach((formElement) => {
 
 // Open add card box
 addCard.addEventListener("click",()=>{
-    new PopupWithForm(".addCard", {fromSubmission:(item) => {
-            const card = new Card({item, handleCardClick:({text, link}) =>{
-                    new PopupWithImage(".openPicture-popup").open({text, link});
-                }});
-            const cardElement = card.generateCard();
-            cardList.prepend(cardElement);
-        },inputs: {input1: titleInput, input2: imageURLInput}}).open();
+    addCardPopup.open();
 });
-
 
 // Open edit profile box
 profileEdit.addEventListener("click", ()=>{
-    new UserInfo({profileName, profileDesignation}).getUserInfo();
-    new PopupWithForm(".profileEdit", {fromSubmission:(item) => {
-            new UserInfo({profileName, profileDesignation}).setUserInfo(item);
-        },inputs: {input1: nameInput, input2: designationInput}}).open();
+    userInfoCheck.getUserInfo();
+    profileEditpopup.open();
 });
