@@ -5,6 +5,7 @@
 @import url("./__image/cards__image.css");
 @import url("./__title/cards__title.css");
 @import url("./__delete/cards__delete.css");
+@import url("./__likes/cards__likes.css");
 .cards{
     max-width: 882px;
     width: 100%;

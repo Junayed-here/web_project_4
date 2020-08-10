@@ -6,45 +6,30 @@ import FormValidator from './FormValidator.js';
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
+import UpdateProfilePicture from "./updateProfilePicture";
 import {
-    initialCards,
+    authorizationCode,
     addCard,
+    api,
     profileEdit,
     cardList,
     profileName,
     profileDesignation,
+    profilePicture,
     titleInput,
     imageURLInput,
     nameInput,
     designationInput,
+    updateImage,
     formList
 } from "./constants.js";
 
-const popupWithImage = new PopupWithImage(".openPicture-popup");
-
-const initialCard = new Section({
-    items: initialCards,
-    renderer: (item) => {
-        const card = new Card({item, handleCardClick:({text, link}) =>{
-                popupWithImage.open({text, link});
-            }});
-        const cardElement = card.generateCard();
-        initialCard.setItem(cardElement);
-    }
-}, cardList);
-initialCard.renderItems();
-
 const userInfoCheck = new UserInfo({profileName, profileDesignation});
-const addCardPopup = new PopupWithForm(".addCard", {fromSubmission:(item) => {
-        const card = new Card({item, handleCardClick:({text, link}) =>{
-                new PopupWithImage(".openPicture-popup").open({text, link});
-            }});
-        const cardElement = card.generateCard();
-        cardList.prepend(cardElement);
+const addCardPopup = new PopupWithForm(".addCard", {fromSubmission: (item, close) => {
+        api.addCard(item, close);
     },inputs: {input1: titleInput, input2: imageURLInput}});
-
-const profileEditpopup = new PopupWithForm(".profileEdit", {fromSubmission:(item) => {
-        userInfoCheck.setUserInfo(item);
+const profileEditpopup = new PopupWithForm(".profileEdit", {fromSubmission:(item, close) => {
+        userInfoCheck.setUserInfo(item, close);
     },inputs: {input1: nameInput, input2: designationInput}});
 
 
@@ -61,7 +46,6 @@ formList.forEach((formElement) => {
     validate.enableValidation();
 });
 
-
 // Open add card box
 addCard.addEventListener("click",()=>{
     addCardPopup.open();
@@ -72,3 +56,12 @@ profileEdit.addEventListener("click", ()=>{
     userInfoCheck.getUserInfo();
     profileEditpopup.open();
 });
+
+// Open update profile picture box
+updateImage.addEventListener("click", ()=>{
+    const ppr = new UpdateProfilePicture(".updateProfilePicture");
+    ppr.open();
+});
+
+api.getUserInfo();
+api.getInitialCards();

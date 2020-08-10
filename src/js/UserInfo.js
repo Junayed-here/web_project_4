@@ -1,8 +1,10 @@
 // Popup with user info form
 import {
+    api,
     nameInput,
     designationInput
 } from "./constants.js";
+
 
 export default class UserInfo {
     constructor(data) {
@@ -15,8 +17,7 @@ export default class UserInfo {
         designationInput.value = this._designation.textContent;
     }
 
-    setUserInfo(info){
-        this._name.textContent = info.name;
-        this._designation.textContent = info.link;
+    setUserInfo(info, close){
+        api.updateUserInfo(info, close, {name: this._name,designation:this._designation});
     }
 }

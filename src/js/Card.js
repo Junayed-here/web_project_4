@@ -1,9 +1,19 @@
 // Card class
 
+import PopupWithImage from "./PopupWithImage";
+import PopupWithForm from "./PopupWithForm";
+import {api, authorizationCode, designationInput, nameInput, ownerId} from "./constants";
+import Popup from "./Popup";
+import DeleteCard from "./deleteCard";
+
 export default class Card {
     constructor({item, handleCardClick}) {
         this._name = item.name;
         this._link = item.link;
+        this._id = item._id;
+        this._initialLikes = item.likes;
+        this._liked = false;
+        this._owner_id = item.owner._id;
         this._handleCardClick = handleCardClick;
     }
 
@@ -18,23 +28,36 @@ export default class Card {
         return cardTemplate;
     }
 
+    _addLike(){
+        api.cardLike({element:this._element, id: this._id},"PUT");
+        this._liked = true;
+    }
+    _deleteLike(){
+        api.cardLike({element:this._element, id: this._id},"DELETE");
+        this._liked = false;
+    }
+
     // set event listeners for f delete, like and popup card image
     _setEventListeners(){
         this._element.addEventListener("click", (event) => {
-            if (!event.target.classList.contains('cards__delete') && !event.target.classList.contains('cards__favourite')){
+            if (!event.target.classList.contains('cards__delete') && !event.target.classList.contains('cards__favourite') && !event.target.classList.contains('cards__likes')){
                 this._handleCardClick({text: this._name, link: this._link});
             }
         });
 
         this._element.querySelector(".cards__favourite").addEventListener("click", (event) => {
-            this._element.querySelector(".cards__favourite").classList.toggle("cards__favourite_active");
+            if (this._liked){
+                this._deleteLike();
+            }else{
+                this._addLike();
+            }
         });
 
         this._element.querySelector(".cards__delete").addEventListener("click", (event) => {
-            this._element.closest('.cards__item').remove();
+            const confirmationPopup = new DeleteCard(".confirmation",this._id,this._element);
+            confirmationPopup.open();
         });
     }
-
 
 
     // generate card
@@ -42,6 +65,24 @@ export default class Card {
         this._element = this._getTemplate();
         this._setEventListeners();
 
+        if (this._initialLikes.length > 0){
+            this._initialLikes.forEach((item)=>{
+                if (item._id === ownerId.value){
+                    this._liked = true;
+                }
+            });
+        }else{
+            this._liked = false;
+        }
+
+        if (this._owner_id !== ownerId.value){
+            this._element.querySelector(".cards__delete").classList.add("d-none");
+        }
+        if (this._liked){
+            this._element.querySelector(".cards__favourite").classList.add("cards__favourite_active");
+        }
+
+        this._element.querySelector(".cards__likes").textContent = this._initialLikes.length;
         this._element.querySelector(".cards__title").textContent = this._name;
         this._element.querySelector(".cards__image").alt = this._name;
         this._element.querySelector(".cards__image").src = this._link;

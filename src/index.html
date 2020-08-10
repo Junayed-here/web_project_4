@@ -13,11 +13,18 @@
 		</header>
 		<main class="main">
 			<section class="profile">
-				<img src="images/image.jpg" alt="Avatar" class="profile__picture">
+				<div class="profile__pictureBox">
+					<img src="images/image.jpg" alt="Avatar" class="profile__picture">
+					<span class="profile__overlay" id="updateImage">
+						<img src="images/edit.svg" alt="edit" class="profile__editIcon">
+					</span>
+				</div>
+				
 				<div class="profile__text">
-					<h1 class="profile__name" id="profile__name">Jacques Cousteau</h1>
+					<input type="hidden" value="" id="ownerId">
+					<h1 class="profile__name" id="profile__name"></h1>
 					<button class="button button_role_edit"></button>
-					<p class="profile__designation" id="profile__designation">Explorer</p>
+					<p class="profile__designation" id="profile__designation"></p>
 				</div>
 				<button class="button button_role_add"></button>
 			</section>
@@ -58,6 +65,22 @@
 				<img class="openPicture-popup__img" src="https://source.unsplash.com/random/1920x1080" alt="">
 				<p class="openPicture-popup__text">Text</p>
 			</div>
+			
+			<div class="popup__body confirmation">
+				<button class="button button_role_close"></button>
+				<h3 class="popup__title">Are you sure?</h3>
+				<button class="button button_role_submit button_role_confirmation popup__button" type="button">Yes</button>
+			</div>
+			
+			<div class="popup__body updateProfilePicture">
+				<button class="button button_role_close"></button>
+				<h3 class="popup__title">Change profile picture</h3>
+				<form action="#" class="popup__form add_card-form" name="add_card" novalidate>
+					<input type="url" placeholder="Image URL" class="popup__input" id="profile-img-link" required>
+					<span class="popup__input-error" id="profile-img-link-error"></span>
+					<button class="button button_role_submit popup__button" type="submit">Save</button>
+				</form>
+			</div>
 		</div>
 		
 		<template id="card_template">
@@ -65,7 +88,9 @@
 				<img src="images/cards/yosemite.png" alt="Image" class="cards__image">
 				<div class="cards__info">
 					<h2 class="cards__title"></h2>
-					<div class="cards__favourite"></div>
+					<div class="cards__favourite">
+						<p class="cards__likes">0</p>
+					</div>
 				</div>
 				<div class="cards__delete"></div>
 			</li>

@@ -12,6 +12,9 @@
     cursor: pointer;
     transition: opacity .4s ease-in-out;
 }
+.cards__delete.d-none{
+    display: none;
+}
 .cards__delete:hover{
     opacity: .6;
 }
