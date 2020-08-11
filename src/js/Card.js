@@ -1,9 +1,6 @@
 // Card class
 
-import PopupWithImage from "./PopupWithImage";
-import PopupWithForm from "./PopupWithForm";
-import {api, authorizationCode, designationInput, nameInput, ownerId} from "./constants";
-import Popup from "./Popup";
+import {api, ownerId} from "./constants";
 import DeleteCard from "./deleteCard";
 
 export default class Card {

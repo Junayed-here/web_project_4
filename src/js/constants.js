@@ -9,12 +9,8 @@ export const profileEdit = profile.querySelector(".button_role_edit");
 export const cardList = document.querySelector(".cards__list");
 export const formList = Array.from(document.querySelectorAll('.popup__form'));
 export const updateImage = document.querySelector("#updateImage");
-
-
-export const popupBox = document.querySelector(".popup");
 export const popupBoxActiveClass = document.querySelector(".popup_show");
 export const popupBody = document.querySelectorAll(".popup__body");
-export const popupsClose = document.querySelectorAll(".button_role_close");
 export const formElementEdit = document.querySelector(".popup__edit-form");
 export const nameInput = formElementEdit.querySelector("#input-name");
 export const designationInput = formElementEdit.querySelector("#input-about");

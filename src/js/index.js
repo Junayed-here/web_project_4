@@ -8,14 +8,12 @@ import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import UpdateProfilePicture from "./updateProfilePicture";
 import {
-    authorizationCode,
     addCard,
     api,
     profileEdit,
     cardList,
     profileName,
     profileDesignation,
-    profilePicture,
     titleInput,
     imageURLInput,
     nameInput,
@@ -26,7 +24,14 @@ import {
 
 const userInfoCheck = new UserInfo({profileName, profileDesignation});
 const addCardPopup = new PopupWithForm(".addCard", {fromSubmission: (item, close) => {
-        api.addCard(item, close);
+        api.addCard(item, close, {addingCard: (data)=> {
+                item = data;
+                const card = new Card({item, handleCardClick:({text, link}) =>{
+                        new PopupWithImage(".openPicture-popup").open({text, link});
+                    }});
+                const cardElement = card.generateCard();
+                cardList.prepend(cardElement);
+            }});
     },inputs: {input1: titleInput, input2: imageURLInput}});
 const profileEditpopup = new PopupWithForm(".profileEdit", {fromSubmission:(item, close) => {
         userInfoCheck.setUserInfo(item, close);
@@ -59,9 +64,21 @@ profileEdit.addEventListener("click", ()=>{
 
 // Open update profile picture box
 updateImage.addEventListener("click", ()=>{
-    const ppr = new UpdateProfilePicture(".updateProfilePicture");
-    ppr.open();
+    const updateProfile = new UpdateProfilePicture(".updateProfilePicture");
+    updateProfile.open();
 });
 
 api.getUserInfo();
-api.getInitialCards();
+api.getInitialCards({generateCardFun: (data)=>{
+        const initialCard = new Section({
+            items: data,
+            renderer: (item) => {
+                const card = new Card({item, handleCardClick:({text, link}) =>{
+                        new PopupWithImage(".openPicture-popup").open({text, link});
+                    }});
+                const cardElement = card.generateCard();
+                initialCard.setItem(cardElement);
+            }
+        }, cardList);
+        initialCard.renderItems();
+    }});

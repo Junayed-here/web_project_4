@@ -1,5 +1,5 @@
 import Popup from "./Popup";
-import {api, authorizationCode, profilePicture} from "./constants";
+import {api} from "./constants";
 
 export default class UpdateProfilePicture extends Popup{
     constructor(props) {

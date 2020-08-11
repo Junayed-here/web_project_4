@@ -1,7 +1,4 @@
-import {cardList, profileDesignation, profileName, profilePicture} from "./constants";
-import Section from "./Section";
-import Card from "./Card";
-import PopupWithImage from "./PopupWithImage.js";
+import {profileDesignation, profileName, profilePicture} from "./constants";
 
 export default class Api {
     constructor(options) {
@@ -9,7 +6,7 @@ export default class Api {
         this._headers = options.headers;
     }
 
-    getInitialCards() {
+    getInitialCards(option) {
         fetch(this._baseURL+"/cards", {
             headers: this._headers
         })
@@ -20,17 +17,7 @@ export default class Api {
             return Promise.reject(`Error: ${res.status}`);
         })
         .then((result) => {
-            const initialCard = new Section({
-                items: result,
-                renderer: (item) => {
-                    const card = new Card({item, handleCardClick:({text, link}) =>{
-                            new PopupWithImage(".openPicture-popup").open({text, link});
-                        }});
-                    const cardElement = card.generateCard();
-                    initialCard.setItem(cardElement);
-                }
-            }, cardList);
-            initialCard.renderItems();
+            option.generateCardFun(result);
         })
         .catch((err) => {
             console.log(err);
@@ -56,7 +43,7 @@ export default class Api {
             console.log(err);
         });
     }
-    addCard(item, close) {
+    addCard(item, close, addingFun) {
         fetch(this._baseURL+"/cards", {
             method: "POST",
             headers: this._headers,
@@ -72,12 +59,7 @@ export default class Api {
             return Promise.reject(`Error: ${res.status}`);
         })
         .then((result) => {
-            item = result;
-            const card = new Card({item, handleCardClick:({text, link}) =>{
-                    new PopupWithImage(".openPicture-popup").open({text, link});
-                }});
-            const cardElement = card.generateCard();
-            cardList.prepend(cardElement);
+            addingFun.addingCard(result);
             close.closePopup();
         })
         .catch((err) => {

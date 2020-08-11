@@ -1,6 +1,5 @@
 // Popup with form class
 import Popup from './Popup.js';
-import {titleInput} from "./constants";
 
 export default class PopupWithForm extends Popup{
     constructor(props,data) {
