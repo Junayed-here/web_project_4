@@ -18,6 +18,11 @@ export default class UserInfo {
     }
 
     setUserInfo(info, close){
-        api.updateUserInfo(info, close, {name: this._name,designation:this._designation});
+        api.updateUserInfo(info)
+            .then((result) => {
+                this._name.textContent = result.name;
+                this._designation.textContent = result.about;
+                close.closePopup();
+            })
     }
 }

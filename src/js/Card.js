@@ -26,11 +26,19 @@ export default class Card {
     }
 
     _addLike(){
-        api.cardLike({element:this._element, id: this._id},"PUT");
+        api.cardLike(this._id,"PUT")
+            .then((result) => {
+                this._element.querySelector(".cards__favourite").classList.add("cards__favourite_active");
+                this._element.querySelector(".cards__likes").textContent = result.likes.length;
+            });
         this._liked = true;
     }
     _deleteLike(){
-        api.cardLike({element:this._element, id: this._id},"DELETE");
+        api.cardLike({element:this._element, id: this._id},"DELETE")
+            .then((result) => {
+                this._element.querySelector(".cards__favourite").classList.remove("cards__favourite_active");
+                this._element.querySelector(".cards__likes").textContent = result.likes.length;
+            });
         this._liked = false;
     }
 

@@ -21,17 +21,20 @@ import {
     updateImage,
     formList
 } from "./constants.js";
+import {profilePicture} from "./constants";
 
 const userInfoCheck = new UserInfo({profileName, profileDesignation});
 const addCardPopup = new PopupWithForm(".addCard", {fromSubmission: (item, close) => {
-        api.addCard(item, close, {addingCard: (data)=> {
-                item = data;
+        api.addCard(item)
+            .then((result)=> {
+                item = result;
                 const card = new Card({item, handleCardClick:({text, link}) =>{
                         new PopupWithImage(".openPicture-popup").open({text, link});
                     }});
                 const cardElement = card.generateCard();
                 cardList.prepend(cardElement);
-            }});
+                close.closePopup();
+            });
     },inputs: {input1: titleInput, input2: imageURLInput}});
 const profileEditpopup = new PopupWithForm(".profileEdit", {fromSubmission:(item, close) => {
         userInfoCheck.setUserInfo(item, close);
@@ -68,10 +71,18 @@ updateImage.addEventListener("click", ()=>{
     updateProfile.open();
 });
 
-api.getUserInfo();
-api.getInitialCards({generateCardFun: (data)=>{
+api.getUserInfo()
+    .then((result) => {
+        profileName.textContent = result.name;
+        profileDesignation.textContent = result.about;
+        ownerId.value = result._id;
+        profilePicture.setAttribute('src', result.avatar);
+    });
+
+api.getInitialCards()
+    .then( (res) => {
         const initialCard = new Section({
-            items: data,
+            items: res,
             renderer: (item) => {
                 const card = new Card({item, handleCardClick:({text, link}) =>{
                         new PopupWithImage(".openPicture-popup").open({text, link});
@@ -81,4 +92,4 @@ api.getInitialCards({generateCardFun: (data)=>{
             }
         }, cardList);
         initialCard.renderItems();
-    }});
+    });

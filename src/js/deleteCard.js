@@ -13,7 +13,11 @@ export default class DeleteCard extends Popup{
     setEventListeners(){
         super.setEventListeners();
         this._confirmButton.addEventListener("click", ()=>{
-            api.deleteCard({id:this._inputId, card: this._card}, {closePopup:()=>{this.close()}});
+            api.deleteCard(this._inputId)
+                .then((result) => {
+                    this._card.remove();
+                    this.close();
+                });
         });
     }
 

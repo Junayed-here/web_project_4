@@ -1,5 +1,5 @@
 import Popup from "./Popup";
-import {api} from "./constants";
+import {api, profilePicture} from "./constants";
 
 export default class UpdateProfilePicture extends Popup{
     constructor(props) {
@@ -13,11 +13,13 @@ export default class UpdateProfilePicture extends Popup{
 
         this._form.addEventListener("submit", ()=>{
             const imageURL = this._form.querySelector("#profile-img-link").value;
-            api.updateProfilePicture(imageURL, {closePopup:()=>{this.close()}});
+            api.updateProfilePicture(imageURL)
+                .then((result) => {
+                    profilePicture.setAttribute('src', result.avatar);
+                    this.close();
+                })
         });
     }
-
-
 
     close() {
         super.close();
