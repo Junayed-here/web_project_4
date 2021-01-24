@@ -14,6 +14,16 @@ export default class Api {
     getUserInfo() {
         return fetch(this._baseURL+"/users/me", {
             headers: this._headers
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+    }
+    updateUserInfo(data) {
+        return fetch(this._baseURL+"/users/me", {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.designation
+            })
         }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
         .catch((err) => {
             console.log(err);
@@ -24,26 +34,13 @@ export default class Api {
             method: "POST",
             headers: this._headers,
             body: JSON.stringify({
-                name: item.name,
-                link:  item.link
+                name: item.cardTitle,
+                link:  item.cardImgUrl
             })
         }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
-    }
-    updateUserInfo(info) {
-        return fetch(this._baseURL+"/users/me", {
-            method: "PATCH",
-            headers: this._headers,
-            body: JSON.stringify({
-                name: info.name,
-                about: info.link
-            })
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
+            .catch((err) => {
+                console.log(err);
+            });
     }
     deleteCard(id) {
         return fetch(this._baseURL+"/cards/"+id, {
@@ -71,8 +68,8 @@ export default class Api {
             method: method,
             headers: this._headers
         }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
+            .catch((err) => {
+                console.log(err);
+            });
     }
 }

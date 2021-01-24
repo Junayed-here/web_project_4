@@ -1,10 +1,9 @@
 // Card class
 
-import {api, ownerId} from "./constants";
-import DeleteCard from "./deleteCard";
+import {ownerId} from "../utils/constants";
 
 export default class Card {
-    constructor({item, handleCardClick}) {
+    constructor({item, handleCardClick, handleAddLike, handleDeleteLike, handleDeleteCard}) {
         this._name = item.name;
         this._link = item.link;
         this._id = item._id;
@@ -12,6 +11,9 @@ export default class Card {
         this._liked = false;
         this._owner_id = item.owner._id;
         this._handleCardClick = handleCardClick;
+        this._handleAddLike = handleAddLike;
+        this._handleDeleteLike = handleDeleteLike;
+        this._handleDeleteCard = handleDeleteCard;
     }
 
     // card template
@@ -24,23 +26,24 @@ export default class Card {
 
         return cardTemplate;
     }
-
+ 
     _addLike(){
-        api.cardLike(this._id,"PUT")
-            .then((result) => {
+        this._handleAddLike(this._id)
+            .then((likeCount) => {
                 this._element.querySelector(".cards__favourite").classList.add("cards__favourite_active");
-                this._element.querySelector(".cards__likes").textContent = result.likes.length;
+                this._element.querySelector(".cards__likes").textContent = likeCount;
             });
         this._liked = true;
     }
     _deleteLike(){
-        api.cardLike({element:this._element, id: this._id},"DELETE")
-            .then((result) => {
+        this._handleDeleteLike(this._id)
+            .then((likeCount) => {
                 this._element.querySelector(".cards__favourite").classList.remove("cards__favourite_active");
-                this._element.querySelector(".cards__likes").textContent = result.likes.length;
+                this._element.querySelector(".cards__likes").textContent = likeCount;
             });
         this._liked = false;
     }
+
 
     // set event listeners for f delete, like and popup card image
     _setEventListeners(){
@@ -59,8 +62,9 @@ export default class Card {
         });
 
         this._element.querySelector(".cards__delete").addEventListener("click", (event) => {
-            const confirmationPopup = new DeleteCard(".confirmation",this._id,this._element);
-            confirmationPopup.open();
+            if (this._owner_id === ownerId.value) {
+                this._handleDeleteCard(this._id,this._element);
+            }
         });
     }
 
@@ -69,6 +73,7 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
+        let name = this._name;
 
         if (this._initialLikes.length > 0){
             this._initialLikes.forEach((item)=>{
@@ -88,8 +93,8 @@ export default class Card {
         }
 
         this._element.querySelector(".cards__likes").textContent = this._initialLikes.length;
-        this._element.querySelector(".cards__title").textContent = this._name;
-        this._element.querySelector(".cards__image").alt = this._name;
+        this._element.querySelector(".cards__title").textContent = name;
+        this._element.querySelector(".cards__image").alt = name;
         this._element.querySelector(".cards__image").src = this._link;
 
         return this._element;
