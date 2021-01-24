@@ -31,7 +31,8 @@
 .popup__input{font-style:normal;font-weight:400;font-size:14px;line-height:17px;color:#000;padding-bottom:13px;width:100%;border:none;border-bottom:1px solid rgba(0,0,0,.2);margin-top:18px}.popup__input:first-child{margin-top:0}.popup__input:focus{outline:none}
 .popup__input-error{font-style:normal;font-weight:400;font-size:12px;line-height:15px;padding-top:5px;color:red;display:block;min-height:20px;opacity:0;transition:opacity .4s ease-in-out}.popup__input-error_active{opacity:1}
 .popup__input-invalid{border-bottom-color:red}
-.popup__body{max-width:430px;width:100%;background:#fff;box-shadow:0 0 25px rgba(0,0,0,.15);border-radius:10px;padding:36px;box-sizing:border-box;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:none}.popup__body_show{display:block}@media screen and (max-width:550px){.popup__body{width:310px;padding:25px}}
+.popup__body-with-form{max-width:430px;width:100%;background:#fff;box-shadow:0 0 25px rgba(0,0,0,.15);border-radius:10px;padding:36px;box-sizing:border-box}@media screen and (max-width:550px){.popup__body-with-form{width:310px;padding:25px}}
+.popup__body{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 .popup__title{font-style:normal;font-weight:900;font-size:24px;line-height:29px;color:#000;margin:0 0 54px}.confirmation .popup__title{margin:0}@media screen and (max-width:550px){.popup__title{margin-bottom:35px}}
 .openPicture-popup__text{font-style:normal;font-weight:400;font-size:12px;line-height:15px;color:#fff}
 .openPicture-popup__img{max-width:75vw;width:100%;max-height:75vh;height:100%}
