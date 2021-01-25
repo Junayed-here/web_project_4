@@ -6,10 +6,7 @@ export default class Api {
     getInitialCards() {
         return fetch(this._baseURL+"/cards", {
             headers: this._headers
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
     }
     getUserInfo() {
         return fetch(this._baseURL+"/users/me", {
@@ -24,10 +21,8 @@ export default class Api {
                 name: data.name,
                 about: data.designation
             })
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+
     }
     addCard(item) {
         return fetch(this._baseURL+"/cards", {
@@ -37,19 +32,14 @@ export default class Api {
                 name: item.cardTitle,
                 link:  item.cardImgUrl
             })
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-            .catch((err) => {
-                console.log(err);
-            });
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+
     }
     deleteCard(id) {
         return fetch(this._baseURL+"/cards/"+id, {
             method: "DELETE",
             headers: this._headers
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
     }
     updateProfilePicture(url) {
         return fetch(this._baseURL+"/users/me/avatar", {
@@ -58,18 +48,12 @@ export default class Api {
             body: JSON.stringify({
                 avatar : url
             })
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => {
-            console.log(err);
-        });
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
     }
     cardLike(id,method) {
         return fetch(this._baseURL+"/cards/likes/"+ id, {
             method: method,
             headers: this._headers
-        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-            .catch((err) => {
-                console.log(err);
-            });
+        }).then(res=> res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
     }
 }

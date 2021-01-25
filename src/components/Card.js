@@ -44,6 +44,9 @@ export default class Card {
         this._liked = false;
     }
 
+    deleteCard(){
+        this._element.remove();
+    }
 
     // set event listeners for f delete, like and popup card image
     _setEventListeners(){
@@ -63,7 +66,7 @@ export default class Card {
 
         this._element.querySelector(".cards__delete").addEventListener("click", (event) => {
             if (this._owner_id === ownerId.value) {
-                this._handleDeleteCard(this._id,this._element);
+                this._handleDeleteCard(this._id);
             }
         });
     }

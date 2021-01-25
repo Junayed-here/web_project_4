@@ -17,6 +17,8 @@ import {
     updateImage,
     formList,
     confirmButton,
+    inputName,
+    inputJob,
     ownerId
 } from "../utils/constants.js";
 const deleteCardConfirmationPopup = new PopupWithForm({popupSelector:".confirmation"});
@@ -34,21 +36,23 @@ const cardSection = new Section({
             },
             handleAddLike:(id) =>{
                 return api.cardLike(id,"PUT")
-                    .then(result => result.likes.length);
+                    .then(result => result.likes.length)
+                    .catch((err) => console.log(err));
             },
             handleDeleteLike:(id) =>{
                 return api.cardLike(id,"DELETE")
                     .then(result => result.likes.length);
             },
-            handleDeleteCard: (id,elem)=>{
+            handleDeleteCard: (id)=>{
                 deleteCardConfirmationPopup.open();
                 confirmButton.classList.remove('button_role_inactive');
-                confirmButton.addEventListener("click", ()=>{
+                deleteCardConfirmationPopup.handleDeleteEvent(()=>{
                     api.deleteCard(id)
-                        .then((result) => {
-                            elem.remove();
+                        .then((res) => {
+                            card.deleteCard();
                             deleteCardConfirmationPopup.close();
-                        });
+                        })
+                        .catch((err) => console.log(err));
                 });
             }
         });
@@ -63,6 +67,12 @@ api.getUserInfo()
     .then((result) => {
         ownerId.value = result._id;
         userProfile.setUserInfo({name: result.name, designation: result.about, avatar: result.avatar});
+        api.getInitialCards()
+            .then( (res) => {
+                res.map(item => cardSection.pushItem(item));
+                cardSection.renderItems();
+            })
+            .catch((err) =>console.log(err));
     });
 const profileEditpopup = new PopupWithForm({
     popupSelector : ".profileEdit",
@@ -72,12 +82,13 @@ const profileEditpopup = new PopupWithForm({
                 userProfile.setUserInfo({name: res.name, designation: res.about, avatar: res.avatar});
                 profileEditpopup.close();
         })
+            .catch((err) => console.log(err));
     }
 });
 profileEdit.addEventListener("click", ()=>{
     const userInfoVal = userProfile.getUserInfo();
-    profileName.value = userInfoVal.name;
-    profileDesignation.value = userInfoVal.job;
+    inputName.value = userInfoVal.name;
+    inputJob.value = userInfoVal.job;
     profileEditpopup.open();
 });
 profileEditpopup.setEventListeners();
@@ -91,7 +102,8 @@ const addCardPopup = new PopupWithForm({
                 cardSection.addItem(result);
                 cardSection.renderItems();
                 addCardPopup.close();
-            });
+            })
+            .catch((err) => console.log(err));
     }
 });
 // Open add card box
@@ -121,17 +133,10 @@ const updateImageFun = new PopupWithForm({
                 profilePicture.setAttribute('src', res.avatar);
                 updateImageFun.close();
             })
+            .catch((err) => console.log(err));
     }
 });
 updateImage.addEventListener('click', ()=>{
     updateImageFun.open();
 });
 updateImageFun.setEventListeners();
-
-api.getInitialCards()
-    .then( (res) => {
-        res.map(item => cardSection.pushItem(item));
-        cardSection.renderItems();
-    }).catch((err) => {
-        console.log(err);
-    });

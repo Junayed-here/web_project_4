@@ -28,6 +28,10 @@ export default class PopupWithForm extends Popup{
         });
     }
 
+    handleDeleteEvent(event){
+        this._fromSubmission = event;
+    }
+
     close() {
         super.close();
         this._form.reset();

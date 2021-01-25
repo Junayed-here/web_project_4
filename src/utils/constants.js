@@ -13,6 +13,8 @@ export const popupImgText = document.querySelector('.openPicture-popup__text');
 export const profilePicture  = document.querySelector(".profile__picture");
 export const profileName = document.querySelector(".profile__name");
 export const confirmButton = document.querySelector(".button_role_confirmation");
+export const inputName = document.querySelector("#input-name");
+export const inputJob = document.querySelector("#input-about");
 import Api from '../components/Api.js';
 export const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-1",
