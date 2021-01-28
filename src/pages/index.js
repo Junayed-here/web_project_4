@@ -41,7 +41,8 @@ const cardSection = new Section({
             },
             handleDeleteLike:(id) =>{
                 return api.cardLike(id,"DELETE")
-                    .then(result => result.likes.length);
+                    .then(result => result.likes.length)
+                    .catch((err) => console.log(err));;
             },
             handleDeleteCard: (id)=>{
                 deleteCardConfirmationPopup.open();
@@ -73,7 +74,8 @@ api.getUserInfo()
                 cardSection.renderItems();
             })
             .catch((err) =>console.log(err));
-    });
+    })
+    .catch((err) => console.log(err));
 const profileEditpopup = new PopupWithForm({
     popupSelector : ".profileEdit",
     fromSubmission:(data) => {
